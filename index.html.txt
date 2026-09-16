@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishan Dagar — AWS Cloud &amp; DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7;
+    --bg-panel:#F1F0EA;
+    --ink:#1B1D1C;
+    --ink-soft:#565952;
+    --line:#DAD8CE;
+    --accent:#2B5D4F;
+    --accent-soft:#E4ECE6;
+    --white:#FFFFFF;
+    --maxw:960px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  section{padding:88px 0;}
+  section + section{border-top:1px solid var(--line);}
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(250,250,247,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .nav-name{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--accent);}
+
+  /* Hero */
+  .hero{padding-top:96px; padding-bottom:96px;}
+  .hero-kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--accent);
+    margin-bottom:18px;
+  }
+  .hero h1{font-size:52px; max-width:11ch; letter-spacing:-0.01em;}
+  .hero p.role{
+    font-size:20px;
+    color:var(--ink-soft);
+    margin-top:18px;
+    max-width:46ch;
+  }
+  .hero-cta{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:13px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    border:1px solid var(--ink);
+    transition:background .15s, color .15s;
+  }
+  .btn-solid{background:var(--ink); color:var(--white);}
+  .btn-solid:hover{background:var(--accent); border-color:var(--accent);}
+  .btn-outline{background:transparent; color:var(--ink);}
+  .btn-outline:hover{background:var(--bg-panel);}
+
+  .hero-strip{
+    margin-top:64px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:var(--bg-panel);
+    padding:22px 26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink-soft);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .hero-strip div span{display:block; color:var(--ink); font-size:15px; margin-top:4px;}
+
+  /* Section headers */
+  .section-head{margin-bottom:44px;}
+  .section-head h2{font-size:30px;}
+  .section-head p{color:var(--ink-soft); margin-top:10px; max-width:56ch;}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+  .about-grid p{margin:0 0 16px; color:var(--ink-soft); max-width:58ch;}
+  .about-facts{border-left:1px solid var(--line); padding-left:28px;}
+  .about-facts dt{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent); margin-top:18px;}
+  .about-facts dt:first-child{margin-top:0;}
+  .about-facts dd{margin:4px 0 0; font-size:15px;}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line); border:1px solid var(--line);}
+  .skill-card{background:var(--bg); padding:26px 28px;}
+  .skill-card h3{font-size:16px; margin-bottom:12px;}
+  .skill-card ul{margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-card li{
+    font-size:13.5px;
+    padding:5px 11px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-radius:3px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* Projects */
+  .project{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:32px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project:first-of-type{padding-top:0;}
+  .project:last-of-type{border-bottom:none;}
+  .project-tag{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+  .project h3{font-size:19px; margin-bottom:8px;}
+  .project p{color:var(--ink-soft); margin:0 0 12px; max-width:60ch;}
+  .project-stack{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+  .project-stack span{
+    font-size:12.5px;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:3px 9px;
+    border-radius:3px;
+  }
+
+  /* Notes / Blog */
+  .notes-empty{
+    border:1px dashed var(--line);
+    border-radius:4px;
+    padding:40px 32px;
+    color:var(--ink-soft);
+  }
+  .notes-empty strong{color:var(--ink); display:block; margin-bottom:6px; font-family:'Space Grotesk',sans-serif; font-size:17px;}
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .contact-links{list-style:none; margin:0; padding:0;}
+  .contact-links li{margin-bottom:14px;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
+  form{display:flex; flex-direction:column; gap:16px;}
+  label{font-size:13px; font-family:'IBM Plex Mono', monospace; color:var(--ink-soft);}
+  input, textarea{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:15px;
+    padding:11px 13px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--white);
+    color:var(--ink);
+    resize:vertical;
+  }
+  input:focus, textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+
+  footer{padding:36px 0; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+
+  @media (max-width:720px){
+    .hero h1{font-size:38px;}
+    .hero-strip{grid-template-columns:1fr; }
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .about-facts{border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:24px;}
+    .project{grid-template-columns:1fr; gap:8px;}
+    .skills-grid{grid-template-columns:1fr;}
+    .nav-links{gap:16px; font-size:13.5px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Krishan Dagar</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#notes">Notes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">// based in Palwal, Haryana — open to roles in Delhi NCR</div>
+    <h1>Krishan Dagar</h1>
+    <p class="role">AWS Cloud &amp; DevOps Engineer — Fresher. I build small, working cloud systems, then write down what I learned building them.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#projects">See my projects</a>
+      <a class="btn btn-outline" href="resume.pdf" download>Download resume</a>
+    </div>
+    <div class="hero-strip">
+      <div>Certification<span>AWS Solutions Architect – Associate</span></div>
+      <div>Training<span>AWS Cloud Infra + DevOps, Ducat</span></div>
+      <div>Currently<span>Incoming MCA student, MDU Rohtak</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <p>I'm a BCA graduate from GGDSD College, Palwal, now heading into an MCA at Maharshi Dayanand University, Rohtak. Before that, I trained in AWS Cloud Infrastructure with DevOps at Ducat, Faridabad, building on a CCNA/networking foundation I'd already put in the work on.</p>
+      <p>Most of what I know, I know because I built it: static sites on S3, a load-balanced EC2 setup, a billing alarm that actually pages me when costs move, an AI chat widget wired into a college website project. I'm looking for an entry-level Cloud or DevOps role in Delhi NCR where I can keep doing exactly that.</p>
+    </div>
+    <dl class="about-facts">
+      <dt>Education</dt>
+      <dd>BCA, GGDSD College Palwal (MDU Rohtak)<br>MCA (incoming), MDU Rohtak</dd>
+      <dt>Certification</dt>
+      <dd>AWS Certified Solutions Architect – Associate, April 2026</dd>
+      <dt>Training</dt>
+      <dd>AWS Cloud Infrastructure with DevOps, Ducat Institute, Faridabad</dd>
+      <dt>Looking for</dt>
+      <dd>AWS Cloud Trainee / Junior DevOps Engineer, Delhi NCR</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <p>Grouped by how I actually use them, not by how they're marketed.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Cloud (AWS)</h3>
+        <ul>
+          <li>EC2</li><li>S3</li><li>Load Balancer</li><li>Auto Scaling</li>
+          <li>DynamoDB</li><li>CloudFront</li><li>CloudFormation</li>
+          <li>Transit Gateway</li><li>CloudWatch + SNS</li><li>IAM</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>DevOps &amp; Systems</h3>
+        <ul>
+          <li>Docker</li><li>Kubernetes</li><li>Jenkins</li><li>Ansible</li>
+          <li>Git</li><li>Linux / RHEL</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Networking</h3>
+        <ul>
+          <li>CCNA foundation</li><li>VPC design</li><li>Cross-VPC connectivity</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Frontend</h3>
+        <ul>
+          <li>HTML</li><li>CSS</li><li>JavaScript</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <p>A running log — I add to this as I finish new builds.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">2026</div>
+      <div>
+        <h3>This portfolio site</h3>
+        <p>Designed and built this website to host my resume, project log, and contact details, then deployed it on S3 static website hosting.</p>
+        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>S3 static hosting</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">2026</div>
+      <div>
+        <h3>Dagar College of IT — demo site with AI chat widget</h3>
+        <p>Built a full college website as a personal/demo project, then added "Chat with Mansi," an AI chat widget wired into the Anthropic API to answer visitor questions.</p>
+        <div class="project-stack"><span>HTML/CSS/JS</span><span>Anthropic API</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">2026</div>
+      <div>
+        <h3>Load-balanced EC2 web app</h3>
+        <p>Hosted a web app on EC2 behind a Load Balancer with Auto Scaling, and a companion static site on S3, to practice highly-available architecture end to end.</p>
+        <div class="project-stack"><span>EC2</span><span>S3</span><span>Load Balancer</span><span>Auto Scaling</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">2026</div>
+      <div>
+        <h3>Cross-VPC private connectivity via Transit Gateway</h3>
+        <p>Set up private connectivity between separate VPCs using a Transit Gateway, to understand multi-VPC network design beyond a single-account setup.</p>
+        <div class="project-stack"><span>VPC</span><span>Transit Gateway</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">2026</div>
+      <div>
+        <h3>CloudWatch billing alarm</h3>
+        <p>Configured a CloudWatch billing alarm with an SNS email notification so unexpected cost spikes get caught early, not at the end of the month.</p>
+        <div class="project-stack"><span>CloudWatch</span><span>SNS</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-tag">Earlier</div>
+      <div>
+        <h3>Star-catching browser game</h3>
+        <p>A small browser game built to get comfortable with frontend fundamentals before moving into cloud work.</p>
+        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="notes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Notes</h2>
+      <p>Short write-ups on what I'm learning — new here.</p>
+    </div>
+    <div class="notes-empty">
+      <strong>Nothing published yet</strong>
+      First note goes here once it's written — likely a breakdown of the next project as I build it.
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Open to AWS Cloud and DevOps roles across Delhi NCR — reach out directly or use the form.</p>
+      </div>
+      <ul class="contact-links">
+        <li>Email — <a href="mailto:krishandagar730@gmail.com">krishandagar730@gmail.com</a></li>
+        <li>LinkedIn — <a href="https://www.linkedin.com/in/krishan-dagar-86ab6140a/" target="_blank" rel="noopener">linkedin.com/in/krishan-dagar-86ab6140a</a></li>
+      </ul>
+    </div>
+    <form action="mailto:krishandagar730@gmail.com" method="POST" enctype="text/plain">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button class="btn btn-solid" type="submit" style="cursor:pointer;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  Built and maintained by Krishan Dagar.
+</footer>
+
+</body>
+</html>
